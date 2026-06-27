@@ -5,7 +5,7 @@ import { getCollection } from "astro:content";
 const allEntries = await getCollection("entries");
 const sorted = allEntries.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 const caseStudies = sorted.filter((e) => e.data.type === "case-study" && e.data.featured);
-const timeline = sorted.slice(0, 10);
+const timeline = sorted.slice(0, 15);
 const allTopics = [...new Set(allEntries.flatMap((e) => e.data.topics))].sort();
 ---
 
@@ -13,43 +13,69 @@ const allTopics = [...new Set(allEntries.flatMap((e) => e.data.topics))].sort();
   title="project-devlog"
   description="Bitácora técnica: decisiones, arquitectura y aprendizajes documentados durante el desarrollo."
 >
-  <p class="intro">
-    Documento lo que aprendo construyendo. No es un blog de tecnología genérica — es el registro real de decisiones, problemas y arquitectura de un proyecto en producción.
-  </p>
+  <section class="mb-10">
+    <p class="text-base sm:text-lg text-text-muted leading-relaxed max-w-2xl">
+      Documento lo que aprendo construyendo. No es un blog de tecnología genérica — es el registro real de decisiones, problemas y arquitectura de un proyecto en producción.
+    </p>
 
-  <div class="topics">
-    {allTopics.map((topic) => <a href={`/topics/${topic.toLowerCase()}`}>{topic}</a>)}
-  </div>
+    <div class="mt-6 flex flex-wrap gap-2">
+      {allTopics.map((topic) => (
+        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-navy-50 text-navy-700 border border-navy-100">
+          {topic}
+        </span>
+      ))}
+    </div>
+  </section>
 
   {
     caseStudies.length > 0 && (
-      <>
-        <h2 class="section-title" id="case-studies">Case Studies</h2>
-        {caseStudies.map((entry) => (
-          <a href={`/entries/${entry.id}`} class="entry-card">
-            <div class="meta">
-              <span>{entry.data.date.toLocaleDateString("es-MX", { year: "numeric", month: "short", day: "numeric" })}</span>
-              <span class="tag">case study</span>
-            </div>
-            <h2>{entry.data.title}</h2>
-            {entry.data.excerpt && <p>{entry.data.excerpt}</p>}
-          </a>
-        ))}
-      </>
+      <section id="case-studies" class="mb-12">
+        <h2 class="text-xs font-semibold uppercase tracking-widest text-text-muted mb-4">Case Studies</h2>
+        <div class="space-y-4">
+          {caseStudies.map((entry) => (
+            <a href={`/entries/${entry.id}`} class="block group bg-surface border border-border-light rounded-xl p-5 sm:p-6 shadow-sm hover:shadow-md hover:border-navy-200 transition-all duration-150 no-underline">
+              <div class="flex items-center gap-3 mb-2">
+                <time class="text-xs text-text-muted">
+                  {entry.data.date.toLocaleDateString("es-MX", { year: "numeric", month: "short", day: "numeric" })}
+                </time>
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wide bg-navy-700 text-white">
+                  case study
+                </span>
+              </div>
+              <h3 class="text-base font-semibold text-text-main group-hover:text-primary transition-colors mb-1">
+                {entry.data.title}
+              </h3>
+              {entry.data.excerpt && (
+                <p class="text-sm text-text-muted leading-relaxed">{entry.data.excerpt}</p>
+              )}
+            </a>
+          ))}
+        </div>
+      </section>
     )
   }
 
-  <h2 class="section-title" id="timeline">Timeline</h2>
-  {
-    timeline.map((entry) => (
-      <a href={`/entries/${entry.slug}`} class="entry-card">
-        <div class="meta">
-          <span>{entry.data.date.toLocaleDateString("es-MX", { year: "numeric", month: "short", day: "numeric" })}</span>
-          <span class="tag">{entry.data.type}</span>
-        </div>
-        <h2>{entry.data.title}</h2>
-        {entry.data.excerpt && <p>{entry.data.excerpt}</p>}
-      </a>
-    ))
-  }
+  <section id="timeline">
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-text-muted mb-4">Timeline</h2>
+    <div class="space-y-3">
+      {timeline.map((entry) => (
+        <a href={`/entries/${entry.id}`} class="block group bg-surface border border-border-light rounded-lg p-4 sm:p-5 shadow-sm hover:shadow-md hover:border-navy-200 transition-all duration-150 no-underline">
+          <div class="flex items-center gap-3 mb-1.5">
+            <time class="text-xs text-text-muted font-mono">
+              {entry.data.date.toLocaleDateString("es-MX", { year: "numeric", month: "short", day: "numeric" })}
+            </time>
+            <span class={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wide ${entry.data.type === "case-study" ? "bg-navy-700 text-white" : "bg-navy-50 text-navy-700 border border-navy-100"}`}>
+              {entry.data.type === "case-study" ? "case study" : "log"}
+            </span>
+          </div>
+          <h3 class="text-sm font-semibold text-text-main group-hover:text-primary transition-colors mb-0.5">
+            {entry.data.title}
+          </h3>
+          {entry.data.excerpt && (
+            <p class="text-xs text-text-muted leading-relaxed">{entry.data.excerpt}</p>
+          )}
+        </a>
+      ))}
+    </div>
+  </section>
 </BaseLayout>

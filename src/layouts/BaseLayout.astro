@@ -1,4 +1,6 @@
 ---
+import "../styles/global.css";
+
 interface Props {
   title: string;
   description?: string;
@@ -15,251 +17,22 @@ const { title, description } = Astro.props;
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <style>
-      :root {
-        --bg: #0d1117;
-        --bg-card: #161b22;
-        --border: #30363d;
-        --text: #e6edf3;
-        --text-muted: #8b949e;
-        --accent: #58a6ff;
-        --accent-dim: #1f6feb;
-        --radius: 8px;
-        --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-        --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      }
-
-      * { box-sizing: border-box; margin: 0; padding: 0; }
-
-      body {
-        font-family: var(--font-sans);
-        background: var(--bg);
-        color: var(--text);
-        line-height: 1.7;
-        min-height: 100vh;
-      }
-
-      a { color: var(--accent); text-decoration: none; }
-      a:hover { text-decoration: underline; }
-
-      .wrapper {
-        max-width: 720px;
-        margin: 0 auto;
-        padding: 2rem 1.25rem;
-      }
-
-      .site-header {
-        border-bottom: 1px solid var(--border);
-        padding-bottom: 1rem;
-        margin-bottom: 2.5rem;
-      }
-
-      .site-header h1 {
-        font-size: 1.25rem;
-        font-weight: 600;
-        letter-spacing: -0.01em;
-      }
-      .site-header h1 a { color: var(--text); }
-      .site-header h1 a:hover { text-decoration: none; color: var(--accent); }
-
-      .site-header .sub {
-        font-size: 0.875rem;
-        color: var(--text-muted);
-        margin-top: 0.25rem;
-      }
-
-      .site-header nav {
-        margin-top: 0.75rem;
-        display: flex;
-        gap: 1rem;
-        font-size: 0.9rem;
-      }
-
-      .site-footer {
-        margin-top: 4rem;
-        padding-top: 1.5rem;
-        border-top: 1px solid var(--border);
-        font-size: 0.8rem;
-        color: var(--text-muted);
-      }
-
-      /* Entry card */
-      .entry-card {
-        display: block;
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        padding: 1.25rem 1.5rem;
-        margin-bottom: 1rem;
-        background: var(--bg-card);
-        transition: border-color 0.15s;
-      }
-      .entry-card:hover {
-        border-color: var(--accent-dim);
-        text-decoration: none;
-      }
-      .entry-card .meta {
-        font-size: 0.8rem;
-        color: var(--text-muted);
-        margin-bottom: 0.4rem;
-        display: flex;
-        gap: 0.75rem;
-      }
-      .entry-card .meta .tag {
-        background: var(--border);
-        color: var(--text-muted);
-        padding: 0.1rem 0.5rem;
-        border-radius: 999px;
-        font-size: 0.7rem;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-      }
-      .entry-card h2 {
-        font-size: 1.05rem;
-        font-weight: 600;
-        margin-bottom: 0.3rem;
-      }
-      .entry-card p {
-        font-size: 0.9rem;
-        color: var(--text-muted);
-      }
-
-      /* Entry page */
-      .entry-article h1 {
-        font-size: 1.6rem;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-        letter-spacing: -0.02em;
-      }
-      .entry-article .meta {
-        font-size: 0.85rem;
-        color: var(--text-muted);
-        margin-bottom: 2rem;
-        display: flex;
-        gap: 0.75rem;
-        align-items: center;
-      }
-      .entry-article .meta .tag {
-        background: var(--border);
-        padding: 0.15rem 0.55rem;
-        border-radius: 999px;
-        font-size: 0.7rem;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-      }
-      .entry-article .content {
-        font-size: 1rem;
-        line-height: 1.8;
-      }
-      .entry-article .content h2 {
-        font-size: 1.2rem;
-        margin-top: 2rem;
-        margin-bottom: 0.6rem;
-        font-weight: 600;
-      }
-      .entry-article .content h3 {
-        font-size: 1.05rem;
-        margin-top: 1.5rem;
-        margin-bottom: 0.4rem;
-      }
-      .entry-article .content p {
-        margin-bottom: 1rem;
-      }
-      .entry-article .content ul, .entry-article .content ol {
-        margin-bottom: 1rem;
-        padding-left: 1.5rem;
-      }
-      .entry-article .content li { margin-bottom: 0.35rem; }
-      .entry-article .content code {
-        font-family: var(--font-mono);
-        background: var(--bg-card);
-        padding: 0.15rem 0.4rem;
-        border-radius: 4px;
-        font-size: 0.9em;
-        border: 1px solid var(--border);
-      }
-      .entry-article .content pre {
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        padding: 1rem;
-        overflow-x: auto;
-        margin-bottom: 1rem;
-        font-size: 0.85rem;
-      }
-      .entry-article .content pre code {
-        background: none;
-        border: none;
-        padding: 0;
-      }
-      .entry-article .content blockquote {
-        border-left: 3px solid var(--accent);
-        margin-bottom: 1rem;
-        padding: 0.5rem 1rem;
-        background: var(--bg-card);
-        border-radius: 0 var(--radius) var(--radius) 0;
-        color: var(--text-muted);
-      }
-
-      /* Sections */
-      .section-title {
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        color: var(--text-muted);
-        margin-bottom: 1rem;
-        margin-top: 2rem;
-      }
-
-      .intro {
-        font-size: 1.05rem;
-        color: var(--text-muted);
-        margin-bottom: 2rem;
-        line-height: 1.7;
-      }
-
-      .back-link {
-        display: inline-block;
-        font-size: 0.85rem;
-        margin-bottom: 2rem;
-      }
-
-      /* Topics */
-      .topics {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-bottom: 2rem;
-      }
-      .topics a {
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        border-radius: 999px;
-        padding: 0.3rem 0.8rem;
-        font-size: 0.8rem;
-        color: var(--text-muted);
-        transition: border-color 0.15s, color 0.15s;
-      }
-      .topics a:hover {
-        border-color: var(--accent-dim);
-        color: var(--accent);
-        text-decoration: none;
-      }
-
-      @media (max-width: 500px) {
-        .wrapper { padding: 1.25rem 1rem; }
-        .site-header nav { flex-direction: column; gap: 0.3rem; }
-      }
-    </style>
   </head>
-  <body>
-    <div class="wrapper">
-      <header class="site-header">
-        <h1><a href="/">project-devlog</a></h1>
-        <p class="sub">Bitácora técnica de un desarrollador. Decisiones, arquitectura, aprendizajes.</p>
-        <nav>
-          <a href="/">Home</a>
-          <a href="#case-studies">Case studies</a>
-          <a href="#timeline">Timeline</a>
+  <body class="bg-bg-soft text-text-main font-sans antialiased min-h-screen flex flex-col">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-10 w-full flex-1">
+      <header class="mb-8 sm:mb-12">
+        <div class="flex flex-col gap-1">
+          <a href="/" class="text-xl font-bold tracking-tight text-primary hover:text-primary-hover transition-colors no-underline">
+            project-devlog
+          </a>
+          <p class="text-sm text-text-muted">
+            Bitácora técnica de un desarrollador. Decisiones, arquitectura, aprendizajes.
+          </p>
+        </div>
+        <nav class="mt-4 flex gap-5 text-sm">
+          <a href="/" class="text-text-muted hover:text-primary transition-colors no-underline">Home</a>
+          <a href="#case-studies" class="text-text-muted hover:text-primary transition-colors no-underline">Case studies</a>
+          <a href="#timeline" class="text-text-muted hover:text-primary transition-colors no-underline">Timeline</a>
         </nav>
       </header>
 
@@ -267,8 +40,8 @@ const { title, description } = Astro.props;
         <slot />
       </main>
 
-      <footer class="site-footer">
-        &copy; {new Date().getFullYear()} project-devlog · Built with Astro
+      <footer class="mt-16 pt-6 border-t border-border-light text-xs text-text-muted">
+        &copy; {new Date().getFullYear()} project-devlog &mdash; Built with Astro
       </footer>
     </div>
   </body>

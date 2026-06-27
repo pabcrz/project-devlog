@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-navy-50: #f0f4fa;
+  --color-navy-100: #d7e0ea;
+  --color-navy-200: #b4c6de;
+  --color-navy-300: #8ba4c7;
+  --color-navy-400: #647ba9;
+  --color-navy-500: #4a6093;
+  --color-navy-600: #3a4d7a;
+  --color-navy-700: #002b68;
+  --color-navy-800: #001b3f;
+  --color-navy-900: #001024;
+  --color-primary: #004aad;
+  --color-primary-hover: #003e91;
+  --color-bg-soft: #f3f6fa;
+  --color-surface: #ffffff;
+  --color-border-light: #d7e0ea;
+  --color-text-main: #001024;
+  --color-text-muted: #64748b;
+  --color-accent-blue: #58a6ff;
+}
+
+@layer components {
+  .entry-content h2 {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--color-text-main);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  .entry-content h3 {
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--color-text-main);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .entry-content p {
+    margin-bottom: 1rem;
+    line-height: 1.75;
+  }
+  .entry-content ul,
+  .entry-content ol {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+  .entry-content li {
+    margin-bottom: 0.4rem;
+    line-height: 1.7;
+  }
+  .entry-content code {
+    background: var(--color-navy-50);
+    color: var(--color-navy-700);
+    padding: 0.15rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+    font-family: ui-monospace, monospace;
+    border: 1px solid var(--color-navy-100);
+  }
+  .entry-content pre {
+    background: var(--color-navy-900);
+    color: var(--color-navy-100);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    overflow-x: auto;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+  }
+  .entry-content pre code {
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: inherit;
+  }
+  .entry-content blockquote {
+    border-left: 3px solid var(--color-primary);
+    background: var(--color-navy-50);
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+    color: var(--color-text-muted);
+  }
+  .entry-content a {
+    color: var(--color-primary);
+  }
+  .entry-content a:hover {
+    text-decoration: underline;
+  }
+}
