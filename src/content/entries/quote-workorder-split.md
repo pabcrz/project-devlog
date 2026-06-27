@@ -1,6 +1,6 @@
 ---
 title: "Por qué separé Quote de WorkOrder: la divergencia del diseño original"
-date: 2026-06-18
+date: 2026-06-17
 topics: ["architecture", "domain-modeling", "prisma", "database"]
 type: "case-study"
 featured: true

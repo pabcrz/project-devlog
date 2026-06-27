@@ -1,6 +1,6 @@
 ---
 title: "Arquitectura de solicitudes de pago independientes"
-date: 2026-06-25
+date: 2026-06-24
 topics: ["architecture", "domain", "database"]
 type: "case-study"
 featured: true

@@ -1,6 +1,6 @@
 ---
 title: "El patrón ledger: por qué no usé un campo 'saldo'"
-date: 2026-06-19
+date: 2026-05-10
 topics: ["architecture", "database", "domain-modeling"]
 type: "case-study"
 featured: false

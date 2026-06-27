@@ -1,6 +1,6 @@
 ---
 title: "La evolución del schema de Prisma: 10 migraciones, 0 rollbacks"
-date: 2026-06-20
+date: 2026-06-17
 topics: ["database", "prisma", "architecture", "domain-modeling"]
 type: "case-study"
 featured: true

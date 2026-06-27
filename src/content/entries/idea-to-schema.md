@@ -1,6 +1,6 @@
 ---
 title: "De una idea a un esquema de base de datos"
-date: 2026-06-16
+date: 2026-02-15
 topics: ["database", "architecture", "prisma", "domain-modeling"]
 type: "case-study"
 featured: true

@@ -1,6 +1,6 @@
 ---
 title: "Pattern de tests de dominio: co-locación y comportamiento"
-date: 2026-06-26
+date: 2026-06-24
 topics: ["testing", "architecture", "vitest"]
 type: "case-study"
 featured: true

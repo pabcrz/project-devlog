@@ -1,6 +1,6 @@
 ---
 title: "Del Figma al código: diseño visual mobile-first"
-date: 2026-06-18
+date: 2026-06-19
 topics: ["design", "tailwind", "mobile", "figma"]
 type: "log"
 featured: false

@@ -1,6 +1,6 @@
 ---
 title: "Arquitectura de autenticación: Supabase Auth + UserProfile interno"
-date: 2026-06-17
+date: 2026-06-18
 topics: ["auth", "architecture", "supabase", "nextjs"]
 type: "case-study"
 featured: false
