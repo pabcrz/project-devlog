@@ -1,14 +1,14 @@
 ---
-title: "Por qué Android no muestra 'Instalar app' en mi PWA"
+title: "Por qué Android no me mostraba 'Instalar app'"
 date: 2026-06-27
 topics: ["pwa", "mobile", "deployment"]
 type: "log"
 phase: produccion
 featured: false
-excerpt: "La app tenía manifest y service worker, pero Chrome en Android no ofrecía instalar. Faltaban íconos PNG y criterios de installability."
+excerpt: "La app tenía manifest y service worker pero Chrome no ofrecía instalar. Faltaban íconos PNG y criterios de installability."
 ---
 
-## El problema
+## Qué pasaba
 
 La app está deployada en Vercel. En otras PWAs, Chrome me muestra "Instalar aplicación" o "Agregar a pantalla principal". En esta, no.
 

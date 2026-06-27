@@ -1,14 +1,14 @@
 ---
-title: "Chained PRs: cómo partí un cambio grande en slices revisables"
+title: "Chained PRs para un cambio grande"
 date: 2026-06-24
 topics: ["git", "pull-requests", "workflow"]
 type: "log"
 phase: produccion
 featured: false
-excerpt: "La implementación de payment requests superó las 400 líneas. En vez de un PR gigante, usé chained PRs para mantener el foco del revisor."
+excerpt: "Payment requests pasó las 400 líneas. En vez de un PR gigante, usé chained PRs."
 ---
 
-## El problema
+## Por qué partirlo
 
 La feature de payment requests —modelo, migración, dominio, acciones, schemas y tests— sumaba más de 400 líneas cambiadas. Un solo PR con todo eso es difícil de revisar bien.
 
@@ -28,7 +28,7 @@ Cada PR era revisable en minutos, no en horas. El revisor ve un diff de ~150 lí
 
 Un PR de 400 líneas revisado a las apuradas es peor que 3 PRs de 150 líneas revisados con atención. Los bugs se cuelan en los PRs grandes porque nadie los lee completos.
 
-## Cómo funciona técnicamente
+## Funcionamiento técnico
 
 Usé **feature-branch-chain**:
 

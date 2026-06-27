@@ -1,11 +1,11 @@
 ---
-title: "Arquitectura de solicitudes de pago independientes"
+title: "Solicitudes de pago independientes"
 date: 2026-06-24
 topics: ["architecture", "domain", "database"]
 type: "case-study"
 phase: produccion
 featured: true
-excerpt: "Cómo diseñé un dominio de solicitudes de pago separado de la aceptación de cotizaciones, usando transacciones, snapshots fiscales y prevención de duplicados."
+excerpt: "El dominio de solicitudes de pago está separado de la aceptación de cotizaciones. Transacciones, snapshots fiscales y constraints."
 ---
 
 ## Contexto

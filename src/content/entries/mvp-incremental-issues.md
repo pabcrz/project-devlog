@@ -1,11 +1,11 @@
 ---
-title: "El camino del MVP: de cero a app funcional en issues incrementales"
+title: "El MVP en issues incrementales"
 date: 2026-06-27
 topics: ["architecture", "mvp", "workflow"]
 type: "log"
 phase: produccion
 featured: false
-excerpt: "Cómo organicé el desarrollo en issues pequeños e incrementales, desde el schema inicial hasta el deploy en Vercel."
+excerpt: "Organicé el desarrollo en issues pequeños e incrementales, desde el schema hasta el deploy."
 ---
 
 ## La estrategia: issues incrementales

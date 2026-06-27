@@ -1,11 +1,11 @@
 ---
-title: "Stack inicial: por qué Next.js, Prisma y Supabase"
+title: "Stack: Next.js, Prisma, Supabase"
 date: 2026-06-16
 topics: ["architecture", "nextjs", "prisma", "supabase", "typescript"]
 type: "case-study"
 phase: reconstruccion
 featured: false
-excerpt: "Las decisiones de tecnología inicial del proyecto y el razonamiento detrás de cada una."
+excerpt: "Decisiones de stack para el MVP y por qué cada una."
 ---
 
 ## Las opciones sobre la mesa

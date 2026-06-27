@@ -1,11 +1,11 @@
 ---
-title: "La evolución del schema de Prisma: 10 migraciones, 0 rollbacks"
+title: "10 migraciones de Prisma, 0 rollbacks"
 date: 2026-06-17
 topics: ["database", "prisma", "architecture", "domain-modeling"]
 type: "case-study"
 phase: reconstruccion
 featured: true
-excerpt: "Cómo arrancó el schema de base de datos, qué decisiones cambiaron entre migraciones y qué aprendí sobre modelar con Prisma y PostgreSQL."
+excerpt: "El schema arrancó así, cambió entre migraciones, y aprendí algo sobre modelar con Prisma y PostgreSQL."
 ---
 
 ## Migración #0: el problema antes del código
@@ -16,7 +16,7 @@ El taller operaba sin sistema. Cotizaciones en PDF, pagos por WhatsApp, nómina 
 2. Los **datos de pago** se dictaban por teléfono. CLABEs, montos, referencias — todo de palabra.
 3. La **nómina semanal** usaba reglas de porcentaje implícitas que solo estaban en la cabeza del dueño.
 
-El objetivo: una app que reemplace esos tres dolores.
+Quería una app que reemplace esos tres dolores.
 
 ## Migración #1: el schema inicial
 

@@ -1,14 +1,14 @@
 ---
-title: "Del Figma al código: diseño visual mobile-first"
+title: "De Figma a Tailwind: tokens y temas"
 date: 2026-06-19
 topics: ["design", "tailwind", "mobile", "figma"]
 type: "log"
 phase: reconstruccion
 featured: false
-excerpt: "Cómo traduje un archivo Figma a un sistema de diseño en Tailwind con tokens, temas claro/oscuro y componentes Radix."
+excerpt: "De un archivo Figma a tokens en Tailwind, temas claro/oscuro y componentes Radix."
 ---
 
-## El contexto
+## De Figma a tokens
 
 El proyecto ya tenía funcionalidad operativa (login, clientes, cotizaciones). Pero visualmente era genérico. El usuario tenía un archivo Figma con el diseño real: pantallas, componentes, colores, tipografía, espaciado.
 

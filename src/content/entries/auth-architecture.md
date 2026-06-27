@@ -1,14 +1,14 @@
 ---
-title: "Arquitectura de autenticación: Supabase Auth + UserProfile interno"
+title: "Auth: Supabase Auth + UserProfile interno"
 date: 2026-06-18
 topics: ["auth", "architecture", "supabase", "nextjs"]
 type: "case-study"
 phase: reconstruccion
 featured: false
-excerpt: "Cómo diseño la capa de auth con Supabase para identidad, Prisma para roles, y proxy para proteger rutas."
+excerpt: "Diseñé la capa de auth con Supabase para identidad, Prisma para roles, y proxy para rutas."
 ---
 
-## El reto
+## Lo que necesitaba
 
 El proyecto necesitaba login para usuarios internos del taller. No sign-up público, no OAuth social. Username + password para admins y asistentes.
 

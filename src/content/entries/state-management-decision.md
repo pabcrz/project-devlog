@@ -1,11 +1,11 @@
 ---
-title: "Cómo decidí no usar Redux ni Zustand (y por qué fue buena decisión)"
+title: "No usé Redux ni Zustand"
 date: 2026-06-28
 topics: ["architecture", "state-management", "react"]
 type: "case-study"
 phase: reflexiones
 featured: true
-excerpt: "Un proyecto con Next.js App Router, Server Actions y Supabase no necesita un store global de cliente. Acá explico el razonamiento."
+excerpt: "Con Next.js App Router, Server Actions y Supabase no necesitaba un store global de cliente."
 ---
 
 ## La pregunta

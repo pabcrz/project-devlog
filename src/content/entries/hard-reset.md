@@ -1,20 +1,18 @@
 ---
-title: "El hard reset: por qué tiré el primer repo y empecé de cero"
+title: "Tiré el primer repo y empecé desde cero"
 date: 2026-04-23
 topics: ["architecture", "workflow", "decision"]
 type: "case-study"
 phase: origen
 featured: true
-excerpt: "El primer repo de SEBASAM llevaba meses de desarrollo, pero se volvió inmantenible. Tomé la decisión de hacer hard reset y contar la historia."
+excerpt: "El primer repo llevaba meses y se volvió inmantenible. Hice hard reset y arranqué limpio."
 ---
 
 ## El repo original
 
 El proyecto no empezó con `sebasam-app`. Empezó con un repo llamado `sebasam` en febrero de 2026. Next.js, Supabase, Prisma, Vercel — el stack era el mismo de ahora.
 
-Pero pasó algo que le pasa a muchos proyectos:
-
-> Funcionaba, pero no entendía por qué.
+Funcionaba, pero no entendía por qué.
 
 Había componentes y funciones que no sabía para qué servían. Cosas mal ubicadas. "Cochinero", en mis palabras de ese momento. Problemas recurrentes como la URL de cotización que no funcionaba en deploy y nadie sabía exactamente dónde estaba la lógica que la generaba.
 
@@ -44,11 +42,7 @@ Abril-mayo no fueron meses perdidos. En el repo original:
 
 Pero el repo seguía cargando deuda. Cada feature nueva arrastraba código viejo que no se entendía del todo.
 
-El 10 de junio se tomó la decisión arquitectónica final:
-
-> "Separar el cotizador en repositorios independientes que funcionen por sí mismos."
-
-No un monolito. Repos separados: landing, app operativa, posiblemente más.
+El 10 de junio decidí separar el cotizador en repositorios independientes que funcionen por sí mismos. No un monolito. Repos separados: landing, app operativa, posiblemente más.
 
 ## El nacimiento de sebasam-app
 

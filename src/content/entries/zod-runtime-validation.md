@@ -1,14 +1,14 @@
 ---
-title: "Validación en runtime con Zod: por qué TypeScript no alcanza"
+title: "Zod para validar en runtime: TypeScript no alcanza"
 date: 2026-06-28
 topics: ["typescript", "validation", "zod"]
 type: "log"
 phase: reflexiones
 featured: false
-excerpt: "TypeScript protege en compilación, pero cuando recibís datos de un formulario, API o URL, necesitás validación real en runtime. Así uso Zod en el proyecto."
+excerpt: "TypeScript protege en compilación pero no en runtime. Así uso Zod para validar datos externos."
 ---
 
-## El problema
+## Por qué no alcanza TypeScript
 
 TypeScript es excelente para detectar errores mientras programás. Pero cuando un usuario envía un formulario, TypeScript ya se fue a dormir. En runtime, el tipo `string` no garantiza que el dato sea un email válido, un RFC bien formado, o que no esté vacío.
 

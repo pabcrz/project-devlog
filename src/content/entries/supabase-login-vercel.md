@@ -5,7 +5,7 @@ topics: ["auth", "deployment", "supabase", "debugging"]
 type: "log"
 phase: produccion
 featured: false
-excerpt: "El login funcionaba en local pero en Vercel devolvía /admin/login?error=invalid. Qué pasó y cómo lo resolví."
+excerpt: "El login andaba en local pero en Vercel devolvía error=invalid. Lo que pasaba y cómo lo arreglé."
 ---
 
 ## El síntoma

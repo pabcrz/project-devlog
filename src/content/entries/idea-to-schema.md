@@ -5,7 +5,7 @@ topics: ["database", "architecture", "prisma", "domain-modeling"]
 type: "case-study"
 phase: origen
 featured: true
-excerpt: "Cómo pasé de un brief de producto a un schema de Prisma con entidades, relaciones, constraints y un modelo de dominio real."
+excerpt: "Pasé de un brief a un schema de Prisma con entidades, relaciones, constraints y un modelo de dominio real."
 ---
 
 ## El punto de partida
