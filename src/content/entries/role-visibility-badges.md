@@ -3,6 +3,7 @@ title: "Separación visual de roles: badges como contrato, no como condicionales
 date: 2026-06-19
 topics: ["architecture", "design", "react", "typescript"]
 type: "log"
+phase: reconstruccion
 featured: false
 excerpt: "Qué ve cada rol en la UI no debería decidirse con if/else en el componente. Modelé badges tipados contra enums de Prisma para que la separación sea estructural."
 ---

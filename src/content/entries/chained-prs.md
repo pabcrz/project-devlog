@@ -3,6 +3,7 @@ title: "Chained PRs: cómo partí un cambio grande en slices revisables"
 date: 2026-06-24
 topics: ["git", "pull-requests", "workflow"]
 type: "log"
+phase: produccion
 featured: false
 excerpt: "La implementación de payment requests superó las 400 líneas. En vez de un PR gigante, usé chained PRs para mantener el foco del revisor."
 ---

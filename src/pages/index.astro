@@ -4,78 +4,90 @@ import { getCollection } from "astro:content";
 
 const allEntries = await getCollection("entries");
 const sorted = allEntries.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
-const caseStudies = sorted.filter((e) => e.data.type === "case-study" && e.data.featured);
-const timeline = sorted.slice(0, 15);
 const allTopics = [...new Set(allEntries.flatMap((e) => e.data.topics))].sort();
+
+const phases = [
+  { key: "origen", label: "El origen", range: "Feb – Abr 2026", desc: "De la idea al primer código. Cómo nació el proyecto y por qué tuve que resetearlo." },
+  { key: "aprendizaje", label: "El aprendizaje", range: "May 2026", desc: "TypeScript, modelado de dominio y los conceptos que sentaron las bases." },
+  { key: "reconstruccion", label: "La reconstrucción", range: "Jun 2026", desc: "Desde cero: schema, auth, features y diseño visual en semanas." },
+  { key: "produccion", label: "Producción", range: "Jun 2026", desc: "Deploy, debugging, PWA y el flujo real de trabajo con PRs." },
+  { key: "reflexiones", label: "Reflexiones", range: "Jun 2026", desc: "Patrones de arquitectura, testing, validación y decisiones de diseño." },
+] as const;
+
+const phaseEntries = (key: string) => {
+  const entries = sorted.filter((e) => e.data.phase === key);
+  const featured = entries.filter((e) => e.data.featured);
+  const rest = entries.filter((e) => !e.data.featured);
+  return [...featured, ...rest];
+};
 ---
 
 <BaseLayout
   title="project-devlog"
   description="Bitácora técnica: decisiones, arquitectura y aprendizajes documentados durante el desarrollo."
 >
+  <!-- Intro -->
   <section class="mb-10">
     <p class="text-base sm:text-lg text-text-muted leading-relaxed max-w-2xl">
       Documento lo que aprendo construyendo. No es un blog de tecnología genérica — es el registro real de decisiones, problemas y arquitectura de un proyecto en producción.
     </p>
 
-    <div class="mt-6 flex flex-wrap gap-2">
-      {allTopics.map((topic) => (
-        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-navy-50 text-navy-700 border border-navy-100">
-          {topic}
-        </span>
-      ))}
-    </div>
+    <details class="mt-6 group">
+      <summary class="text-sm text-text-muted cursor-pointer hover:text-primary transition-colors select-none">
+        Explorar por tema
+      </summary>
+      <div class="mt-3 flex flex-wrap gap-2">
+        {allTopics.map((topic) => (
+          <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-navy-50 text-navy-700 border border-navy-100">
+            {topic}
+          </span>
+        ))}
+      </div>
+    </details>
   </section>
 
-  {
-    caseStudies.length > 0 && (
-      <section id="case-studies" class="mb-12">
-        <h2 class="text-xs font-semibold uppercase tracking-widest text-text-muted mb-4">Case Studies</h2>
-        <div class="space-y-4">
-          {caseStudies.map((entry) => (
-            <a href={`/entries/${entry.id}`} class="block group bg-surface border border-border-light rounded-xl p-5 sm:p-6 shadow-sm hover:shadow-md hover:border-navy-200 transition-all duration-150 no-underline">
-              <div class="flex items-center gap-3 mb-2">
-                <time class="text-xs text-text-muted">
-                  {entry.data.date.toLocaleDateString("es-MX", { year: "numeric", month: "short", day: "numeric" })}
-                </time>
-                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wide bg-navy-700 text-white">
-                  case study
-                </span>
-              </div>
-              <h3 class="text-base font-semibold text-text-main group-hover:text-primary transition-colors mb-1">
-                {entry.data.title}
-              </h3>
-              {entry.data.excerpt && (
-                <p class="text-sm text-text-muted leading-relaxed">{entry.data.excerpt}</p>
-              )}
-            </a>
-          ))}
-        </div>
-      </section>
-    )
-  }
-
-  <section id="timeline">
-    <h2 class="text-xs font-semibold uppercase tracking-widest text-text-muted mb-4">Timeline</h2>
-    <div class="space-y-3">
-      {timeline.map((entry) => (
-        <a href={`/entries/${entry.id}`} class="block group bg-surface border border-border-light rounded-lg p-4 sm:p-5 shadow-sm hover:shadow-md hover:border-navy-200 transition-all duration-150 no-underline">
-          <div class="flex items-center gap-3 mb-1.5">
-            <time class="text-xs text-text-muted font-mono">
-              {entry.data.date.toLocaleDateString("es-MX", { year: "numeric", month: "short", day: "numeric" })}
-            </time>
-            <span class={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wide ${entry.data.type === "case-study" ? "bg-navy-700 text-white" : "bg-navy-50 text-navy-700 border border-navy-100"}`}>
-              {entry.data.type === "case-study" ? "case study" : "log"}
-            </span>
+  <!-- Phases -->
+  <div class="space-y-12">
+    {phases.map((phase) => {
+      const entries = phaseEntries(phase.key);
+      if (entries.length === 0) return null;
+      return (
+        <section>
+          <div class="mb-4">
+            <h2 class="text-lg font-bold tracking-tight text-text-main">
+              {phase.label}
+            </h2>
+            <div class="flex items-center gap-2 mt-0.5">
+              <span class="text-xs text-text-muted font-mono">{phase.range}</span>
+            </div>
+            <p class="text-sm text-text-muted mt-1 leading-relaxed">{phase.desc}</p>
           </div>
-          <h3 class="text-sm font-semibold text-text-main group-hover:text-primary transition-colors mb-0.5">
-            {entry.data.title}
-          </h3>
-          {entry.data.excerpt && (
-            <p class="text-xs text-text-muted leading-relaxed">{entry.data.excerpt}</p>
-          )}
-        </a>
-      ))}
-    </div>
-  </section>
+
+          <div class="space-y-2.5">
+            {entries.map((entry) => (
+              <a href={`/entries/${entry.id}`} class="block group bg-surface border border-border-light rounded-lg p-4 sm:px-5 sm:py-4 shadow-sm hover:shadow-md hover:border-navy-200 transition-all duration-150 no-underline">
+                <div class="flex items-center gap-3 mb-1.5">
+                  <time class="text-xs text-text-muted font-mono">
+                    {entry.data.date.toLocaleDateString("es-MX", { year: "numeric", month: "short", day: "numeric" })}
+                  </time>
+                  <span class={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wide ${entry.data.type === "case-study" ? "bg-navy-700 text-white" : "bg-navy-50 text-navy-700 border border-navy-100"}`}>
+                    {entry.data.type === "case-study" ? "case study" : "log"}
+                  </span>
+                  {entry.data.featured && (
+                    <span class="inline-flex items-center text-[10px] text-amber-600 font-medium">★</span>
+                  )}
+                </div>
+                <h3 class="text-sm font-semibold text-text-main group-hover:text-primary transition-colors mb-0.5">
+                  {entry.data.title}
+                </h3>
+                {entry.data.excerpt && (
+                  <p class="text-xs text-text-muted leading-relaxed">{entry.data.excerpt}</p>
+                )}
+              </a>
+            ))}
+          </div>
+        </section>
+      );
+    })}
+  </div>
 </BaseLayout>

@@ -3,6 +3,7 @@ title: "Por qué separé Quote de WorkOrder: la divergencia del diseño original
 date: 2026-06-17
 topics: ["architecture", "domain-modeling", "prisma", "database"]
 type: "case-study"
+phase: reconstruccion
 featured: true
 excerpt: "El diseño original unificaba cotización y orden de trabajo en una sola entidad con 10 estados. Mi decisión fue dividirlas. Acá explico por qué."
 ---

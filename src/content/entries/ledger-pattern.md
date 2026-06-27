@@ -3,6 +3,7 @@ title: "El patrón ledger: por qué no usé un campo 'saldo'"
 date: 2026-05-10
 topics: ["architecture", "database", "domain-modeling"]
 type: "case-study"
+phase: aprendizaje
 featured: false
 excerpt: "Para registrar pagos y adeudos de clientes, un campo `saldo` parece lo obvio. Pero modelé un ledger de movimientos signados. Explico el trade-off."
 ---

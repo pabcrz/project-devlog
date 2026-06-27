@@ -3,6 +3,7 @@ title: "El hard reset: por qué tiré el primer repo y empecé de cero"
 date: 2026-04-23
 topics: ["architecture", "workflow", "decision"]
 type: "case-study"
+phase: origen
 featured: true
 excerpt: "El primer repo de SEBASAM llevaba meses de desarrollo, pero se volvió inmantenible. Tomé la decisión de hacer hard reset y contar la historia."
 ---

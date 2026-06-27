@@ -3,6 +3,7 @@ title: "Por qué Android no muestra 'Instalar app' en mi PWA"
 date: 2026-06-27
 topics: ["pwa", "mobile", "deployment"]
 type: "log"
+phase: produccion
 featured: false
 excerpt: "La app tenía manifest y service worker, pero Chrome en Android no ofrecía instalar. Faltaban íconos PNG y criterios de installability."
 ---

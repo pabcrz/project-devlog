@@ -3,6 +3,7 @@ title: "De una idea a un esquema de base de datos"
 date: 2026-02-15
 topics: ["database", "architecture", "prisma", "domain-modeling"]
 type: "case-study"
+phase: origen
 featured: true
 excerpt: "Cómo pasé de un brief de producto a un schema de Prisma con entidades, relaciones, constraints y un modelo de dominio real."
 ---

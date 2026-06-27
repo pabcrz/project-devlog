@@ -3,6 +3,7 @@ title: "Debugging login con Supabase en Vercel"
 date: 2026-06-27
 topics: ["auth", "deployment", "supabase", "debugging"]
 type: "log"
+phase: produccion
 featured: false
 excerpt: "El login funcionaba en local pero en Vercel devolvía /admin/login?error=invalid. Qué pasó y cómo lo resolví."
 ---

@@ -3,6 +3,7 @@ title: "Del Figma al código: diseño visual mobile-first"
 date: 2026-06-19
 topics: ["design", "tailwind", "mobile", "figma"]
 type: "log"
+phase: reconstruccion
 featured: false
 excerpt: "Cómo traduje un archivo Figma a un sistema de diseño en Tailwind con tokens, temas claro/oscuro y componentes Radix."
 ---

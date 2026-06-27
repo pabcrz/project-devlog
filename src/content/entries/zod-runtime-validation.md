@@ -3,6 +3,7 @@ title: "Validación en runtime con Zod: por qué TypeScript no alcanza"
 date: 2026-06-28
 topics: ["typescript", "validation", "zod"]
 type: "log"
+phase: reflexiones
 featured: false
 excerpt: "TypeScript protege en compilación, pero cuando recibís datos de un formulario, API o URL, necesitás validación real en runtime. Así uso Zod en el proyecto."
 ---

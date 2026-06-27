@@ -3,6 +3,7 @@ title: "Pattern de tests de dominio: co-locación y comportamiento"
 date: 2026-06-24
 topics: ["testing", "architecture", "vitest"]
 type: "case-study"
+phase: reflexiones
 featured: true
 excerpt: "Por qué puse los tests al lado del código de dominio, qué testeo (comportamiento, no implementación) y cómo limpio la base de datos entre tests."
 ---

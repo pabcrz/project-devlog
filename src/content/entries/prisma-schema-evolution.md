@@ -3,6 +3,7 @@ title: "La evolución del schema de Prisma: 10 migraciones, 0 rollbacks"
 date: 2026-06-17
 topics: ["database", "prisma", "architecture", "domain-modeling"]
 type: "case-study"
+phase: reconstruccion
 featured: true
 excerpt: "Cómo arrancó el schema de base de datos, qué decisiones cambiaron entre migraciones y qué aprendí sobre modelar con Prisma y PostgreSQL."
 ---
