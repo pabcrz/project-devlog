@@ -6,12 +6,15 @@ const allEntries = await getCollection("entries");
 const sorted = allEntries.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 const allTopics = [...new Set(allEntries.flatMap((e) => e.data.topics))].sort();
 
+const topicEntries = (topic: string) =>
+  sorted.filter((e) => e.data.topics.includes(topic));
+
 const phases = [
-  { key: "origen", label: "El origen", range: "Feb – Abr 2026", desc: "De la idea al primer código. Cómo nació el proyecto y por qué tuve que resetearlo." },
-  { key: "aprendizaje", label: "El aprendizaje", range: "May 2026", desc: "TypeScript, modelado de dominio y los conceptos que sentaron las bases." },
-  { key: "reconstruccion", label: "La reconstrucción", range: "Jun 2026", desc: "Desde cero: schema, auth, features y diseño visual en semanas." },
-  { key: "produccion", label: "Producción", range: "Jun 2026", desc: "Deploy, debugging, PWA y el flujo real de trabajo con PRs." },
-  { key: "reflexiones", label: "Reflexiones", range: "Jun 2026", desc: "Patrones de arquitectura, testing, validación y decisiones de diseño." },
+  { key: "origen", label: "Origen", range: "Feb – Abr 2026", desc: "Idea, dominio y el reset que ordenó todo." },
+  { key: "aprendizaje", label: "Aprendizaje", range: "May 2026", desc: "TypeScript, modelado y los patrones que después usé en todo." },
+  { key: "reconstruccion", label: "Reconstrucción", range: "Jun 2026", desc: "Desde cero: schema, auth, features. Sin deuda." },
+  { key: "produccion", label: "Producción", range: "Jun 2026", desc: "Deploy, debugging real, PWA y flujo de trabajo con PRs." },
+  { key: "reflexiones", label: "Reflexiones", range: "Jun 2026", desc: "Lo que quedó después de construir: patrones que funcionan." },
 ] as const;
 
 const phaseEntries = (key: string) => {
@@ -24,65 +27,52 @@ const phaseEntries = (key: string) => {
 
 <BaseLayout
   title="project-devlog"
-  description="Bitácora técnica: decisiones, arquitectura y aprendizajes documentados durante el desarrollo."
+  description="Registro de decisiones técnicas, arquitectura y aprendizajes durante el desarrollo de una app operativa."
 >
-  <!-- Intro -->
-  <section class="mb-10">
-    <p class="text-base sm:text-lg text-text-muted leading-relaxed max-w-2xl">
-      Documento lo que aprendo construyendo. No es un blog de tecnología genérica — es el registro real de decisiones, problemas y arquitectura de un proyecto en producción.
-    </p>
+  <p class="text-sm sm:text-base text-text-muted leading-relaxed max-w-2xl mb-6">
+    Registro de decisiones técnicas, problemas resueltos y arquitectura de una app operativa real.
+    Sin marketing, sin hype.
+  </p>
 
-    <details class="mt-6 group">
-      <summary class="text-sm text-text-muted cursor-pointer hover:text-primary transition-colors select-none">
-        Explorar por tema
-      </summary>
-      <div class="mt-3 flex flex-wrap gap-2">
-        {allTopics.map((topic) => (
-          <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-navy-50 text-navy-700 border border-navy-100">
-            {topic}
-          </span>
-        ))}
-      </div>
-    </details>
-  </section>
+  <div class="flex flex-wrap gap-1.5 mb-10">
+    {allTopics.map((topic) => (
+      <a href={`#topic-${topic.toLowerCase()}`} class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-navy-50 text-navy-600 border border-navy-100 hover:border-navy-300 hover:text-navy-800 transition-colors no-underline">
+        {topic}
+      </a>
+    ))}
+  </div>
 
-  <!-- Phases -->
-  <div class="space-y-12">
+  <div class="space-y-10">
     {phases.map((phase) => {
       const entries = phaseEntries(phase.key);
       if (entries.length === 0) return null;
       return (
         <section>
-          <div class="mb-4">
-            <h2 class="text-lg font-bold tracking-tight text-text-main">
+          <div class="mb-3">
+            <h2 class="text-base font-bold tracking-tight text-text-main">
               {phase.label}
             </h2>
             <div class="flex items-center gap-2 mt-0.5">
-              <span class="text-xs text-text-muted font-mono">{phase.range}</span>
+              <span class="text-[11px] text-text-muted font-mono">{phase.range}</span>
+              <span class="text-[11px] text-text-muted">{phase.desc}</span>
             </div>
-            <p class="text-sm text-text-muted mt-1 leading-relaxed">{phase.desc}</p>
           </div>
 
-          <div class="space-y-2.5">
+          <div class="space-y-2">
             {entries.map((entry) => (
-              <a href={`/entries/${entry.id}`} class="block group bg-surface border border-border-light rounded-lg p-4 sm:px-5 sm:py-4 shadow-sm hover:shadow-md hover:border-navy-200 transition-all duration-150 no-underline">
-                <div class="flex items-center gap-3 mb-1.5">
-                  <time class="text-xs text-text-muted font-mono">
+              <a href={`/entries/${entry.id}`} class="block group bg-surface border border-border-light rounded-lg px-4 sm:px-5 py-3.5 shadow-sm hover:shadow-md hover:border-navy-200 transition-colors no-underline">
+                <div class="flex items-center gap-2.5 mb-1">
+                  <time class="text-[11px] text-text-muted font-mono tabular-nums">
                     {entry.data.date.toLocaleDateString("es-MX", { year: "numeric", month: "short", day: "numeric" })}
                   </time>
-                  <span class={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wide ${entry.data.type === "case-study" ? "bg-navy-700 text-white" : "bg-navy-50 text-navy-700 border border-navy-100"}`}>
+                  <span class={`inline-flex items-center px-1.5 py-px rounded-full text-[10px] font-semibold uppercase tracking-wide ${entry.data.type === "case-study" ? "bg-navy-700 text-white" : "bg-navy-50 text-navy-600 border border-navy-100"}`}>
                     {entry.data.type === "case-study" ? "case study" : "log"}
                   </span>
-                  {entry.data.featured && (
-                    <span class="inline-flex items-center text-[10px] text-amber-600 font-medium">★</span>
-                  )}
+                  {entry.data.featured && <span class="text-[10px] text-amber-500 leading-none">★</span>}
                 </div>
-                <h3 class="text-sm font-semibold text-text-main group-hover:text-primary transition-colors mb-0.5">
+                <h3 class="text-sm font-semibold text-text-main group-hover:text-primary transition-colors">
                   {entry.data.title}
                 </h3>
-                {entry.data.excerpt && (
-                  <p class="text-xs text-text-muted leading-relaxed">{entry.data.excerpt}</p>
-                )}
               </a>
             ))}
           </div>
@@ -90,4 +80,26 @@ const phaseEntries = (key: string) => {
       );
     })}
   </div>
+
+  <!-- Topic anchors -->
+  {allTopics.map((topic) => (
+    <section id={`topic-${topic.toLowerCase()}`} class="mt-10 pt-6 border-t border-border-light">
+      <h2 class="text-sm font-semibold text-text-main mb-3">Entradas sobre <span class="text-primary">{topic}</span></h2>
+      <div class="space-y-2">
+        {topicEntries(topic).map((entry) => (
+          <a href={`/entries/${entry.id}`} class="block group bg-surface border border-border-light rounded-lg px-4 py-3 shadow-sm hover:border-navy-200 transition-colors no-underline">
+            <div class="flex items-center gap-2.5 mb-0.5">
+              <time class="text-[11px] text-text-muted font-mono">
+                {entry.data.date.toLocaleDateString("es-MX", { year: "numeric", month: "short", day: "numeric" })}
+              </time>
+              <span class="text-[11px] text-text-muted">{entry.data.phase}</span>
+            </div>
+            <h3 class="text-sm font-medium text-text-main group-hover:text-primary transition-colors">
+              {entry.data.title}
+            </h3>
+          </a>
+        ))}
+      </div>
+    </section>
+  ))}
 </BaseLayout>
