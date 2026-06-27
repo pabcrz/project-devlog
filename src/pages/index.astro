@@ -1,0 +1,55 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const allEntries = await getCollection("entries");
+const sorted = allEntries.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const caseStudies = sorted.filter((e) => e.data.type === "case-study" && e.data.featured);
+const timeline = sorted.slice(0, 10);
+const allTopics = [...new Set(allEntries.flatMap((e) => e.data.topics))].sort();
+---
+
+<BaseLayout
+  title="project-devlog"
+  description="Bitácora técnica: decisiones, arquitectura y aprendizajes documentados durante el desarrollo."
+>
+  <p class="intro">
+    Documento lo que aprendo construyendo. No es un blog de tecnología genérica — es el registro real de decisiones, problemas y arquitectura de un proyecto en producción.
+  </p>
+
+  <div class="topics">
+    {allTopics.map((topic) => <a href={`/topics/${topic.toLowerCase()}`}>{topic}</a>)}
+  </div>
+
+  {
+    caseStudies.length > 0 && (
+      <>
+        <h2 class="section-title" id="case-studies">Case Studies</h2>
+        {caseStudies.map((entry) => (
+          <a href={`/entries/${entry.id}`} class="entry-card">
+            <div class="meta">
+              <span>{entry.data.date.toLocaleDateString("es-MX", { year: "numeric", month: "short", day: "numeric" })}</span>
+              <span class="tag">case study</span>
+            </div>
+            <h2>{entry.data.title}</h2>
+            {entry.data.excerpt && <p>{entry.data.excerpt}</p>}
+          </a>
+        ))}
+      </>
+    )
+  }
+
+  <h2 class="section-title" id="timeline">Timeline</h2>
+  {
+    timeline.map((entry) => (
+      <a href={`/entries/${entry.slug}`} class="entry-card">
+        <div class="meta">
+          <span>{entry.data.date.toLocaleDateString("es-MX", { year: "numeric", month: "short", day: "numeric" })}</span>
+          <span class="tag">{entry.data.type}</span>
+        </div>
+        <h2>{entry.data.title}</h2>
+        {entry.data.excerpt && <p>{entry.data.excerpt}</p>}
+      </a>
+    ))
+  }
+</BaseLayout>
